@@ -1,0 +1,244 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zana o kick habbo</title>
+
+    <!-- Añadir el favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Alternativamente, para un PNG -->
+    <!-- <link rel="icon" href="favicon.png" type="image/png"> -->
+</head>
+<body>
+    <h1></h1>
+    <p></p>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro e Inicio de Sesión - Espacio Zana</title>
+    <style>
+        /* Estilos Generales */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #000; /* Fondo negro */
+            color: #fff;
+            overflow: hidden;
+        }
+        
+        /* Fondo animado de estrellas */
+        #stars, #stars2, #stars3 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: transparent url('https://www.transparenttextures.com/patterns/stardust.png');
+            animation: moveStars 100s linear infinite;
+        }
+        
+        #stars2 {
+            animation: moveStars 150s linear infinite;
+            opacity: 0.5;
+        }
+        
+        #stars3 {
+            animation: moveStars 200s linear infinite;
+            opacity: 0.2;
+        }
+
+        @keyframes moveStars {
+            from {transform: translateY(0);}
+            to {transform: translateY(-2000px);}
+        }
+
+        /* Contenedor de Formularios */
+        .container {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .container h2 {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+
+        .form-group input::placeholder {
+            color: #ccc;
+        }
+
+        .form-group input:focus {
+            border-color: #5b9bd5;
+            outline: none;
+        }
+
+        .button {
+            width: 100%;
+            background-color: #5b9bd5;
+            color: #ffffff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .button:hover {
+            background-color: #4a8ec9;
+        }
+
+        .toggle-button {
+            background: none;
+            border: none;
+            color: #5b9bd5;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .toggle-button:hover {
+            text-decoration: none;
+        }
+
+        .form-section {
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 20px;
+                width: 90%;
+            }
+
+            .form-group input {
+                font-size: 14px;
+            }
+
+            .button {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="stars"></div>
+<div id="stars2"></div>
+<div id="stars3"></div>
+
+<div class="container">
+    <h2 id="form-title">Registro</h2>
+
+    <!-- Formulario de Registro -->
+    <form id="register-form" class="form-section active" action="/submit_registration" method="POST">
+        <div class="form-group">
+            <label for="username">Nombre de usuario:</label>
+            <input type="text" id="username" name="username" placeholder="Ingrese su usuario" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" placeholder="Ingrese su correo" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required>
+        </div>
+        <div class="form-group">
+            <label for="confirm_password">Confirmar Contraseña:</label>
+            <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirme su contraseña" required>
+        </div>
+        <button type="submit" class="button">Registrarse</button>
+    </form>
+
+    <!-- Formulario de Inicio de Sesión -->
+    <form id="login-form" class="form-section" action="/submit_login" method="POST">
+        <div class="form-group">
+            <label for="login_email">Correo electrónico:</label>
+            <input type="email" id="login_email" name="login_email" placeholder="Ingrese su correo" required>
+        </div>
+        <div class="form-group">
+            <label for="login_password">Contraseña:</label>
+            <input type="password" id="login_password" name="login_password" placeholder="Ingrese su contraseña" required>
+        </div>
+        <button type="submit" class="button">Iniciar Sesión</button>
+    </form>
+
+    <!-- Botones de cambio entre formularios -->
+    <button class="toggle-button" id="toggle-to-login">¿Ya tienes una cuenta? Inicia sesión</button>
+    <button class="toggle-button" id="toggle-to-register" style="display: none;">¿No tienes cuenta? Regístrate</button>
+</div>
+
+<script>
+    const registerForm = document.getElementById('register-form');
+    const loginForm = document.getElementById('login-form');
+    const toggleToLoginButton = document.getElementById('toggle-to-login');
+    const toggleToRegisterButton = document.getElementById('toggle-to-register');
+    const formTitle = document.getElementById('form-title');
+
+    toggleToLoginButton.addEventListener('click', () => {
+        registerForm.classList.remove('active');
+        loginForm.classList.add('active');
+        toggleToLoginButton.style.display = 'none';
+        toggleToRegisterButton.style.display = 'block';
+        formTitle.textContent = 'Iniciar Sesión';
+    });
+
+    toggleToRegisterButton.addEventListener('click', () => {
+        loginForm.classList.remove('active');
+        registerForm.classList.add('active');
+        toggleToLoginButton.style.display = 'block';
+        toggleToRegisterButton.style.display = 'none';
+        formTitle.textContent = 'Registro';
+    });
+</script>
+
+</body>
+</html>
